@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.10)
 
 project(cmake-project-template)
 
+enable_testing()
+
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -O3")
 
@@ -17,4 +19,4 @@ include_directories(${DIVISIBLE_INSTALL_INCLUDE_DIR})
 include_directories(${DIVISION_HEADERS_DIR})
 
 add_subdirectory(src)
-# add_subdirectory(test)
+add_subdirectory(test)
