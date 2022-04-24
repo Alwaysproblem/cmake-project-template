@@ -1,3 +1,31 @@
 {
-    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+  "lldb.displayFormat": "auto",
+  "lldb.dereferencePointers": true,
+  "lldb.showDisassembly": "auto",
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": "googletest.failed",
+        "settings": {
+          "foreground": "#f00"
+        }
+      },
+      {
+        "scope": "googletest.passed",
+        "settings": {
+          "foreground": "#0f0"
+        }
+      },
+      {
+        "scope": "googletest.run",
+        "settings": {
+          "foreground": "#0f0"
+        }
+      }
+    ]
+  },
+  "gtest-adapter.debugConfig": [
+    "CodeLLDB"
+  ],
+  "editor.mouseWheelZoom": true,
 }
