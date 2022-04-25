@@ -55,6 +55,17 @@
       },
     },
     {
+      "preLaunchTask": "Bazel Build (Debug)",
+      "name": "CodeLLDBTest",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/bazel-bin/tests/cpplib_test.runfiles/__main__/tests/cpplib_test",
+      "args": [],
+      "sourceMap": {
+        ".": "${workspaceFolder}"
+      },
+    },
+    {
       "name": "Linux: g++ build and debug active file",
       "type": "cppdbg",
       "request": "launch",

@@ -7,25 +7,28 @@
       {
         "scope": "googletest.failed",
         "settings": {
-          "foreground": "#f00"
+          "foreground": "#E66C75"
         }
       },
       {
         "scope": "googletest.passed",
         "settings": {
-          "foreground": "#0f0"
+          "foreground": "#A3C989"
         }
       },
       {
         "scope": "googletest.run",
         "settings": {
-          "foreground": "#0f0"
+          "foreground": "#A3C989"
         }
       }
     ]
   },
   "gtest-adapter.debugConfig": [
-    "CodeLLDB"
+    "CodeLLDBTest",
   ],
-  "editor.mouseWheelZoom": true,
+  "gtest-adapter.showCodeLens": true,
+  "gtest-adapter.showRunOutput": true,
+  "gtest-adapter.supportLocation": true,
+  "gtest-adapter.refreshAfterBuild": true
 }

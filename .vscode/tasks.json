@@ -10,12 +10,12 @@
         "command": "bazel build --cxxopt='-std=c++17' ${relativeFileDirname}:${fileBasenameNoExtension} --experimental_enable_runfiles -c dbg"
       },
       "osx": {
-        "command": "bazel build --cxxopt='-std=c++17' ${relativeFileDirname}:${fileBasenameNoExtension} -c dbg --spawn_strategy=local",
+        "command": "bazel build --cxxopt='-std=c++17' ${relativeFileDirname}:${fileBasenameNoExtension} -c dbg --spawn_strategy=local"
       },
       "group": {
         "kind": "build",
         "isDefault": true
-      },
+      }
     },
     {
       "label": "Bazel Build (Run)",
@@ -25,12 +25,12 @@
         "command": "bazel build --cxxopt='-std=c++17' ${relativeFileDirname}:${fileBasenameNoExtension}"
       },
       "osx": {
-        "command": "bazel build --cxxopt='-std=c++17' ${relativeFileDirname}:${fileBasenameNoExtension}",
+        "command": "bazel build --cxxopt='-std=c++17' ${relativeFileDirname}:${fileBasenameNoExtension}"
       },
       "group": {
         "kind": "build",
         "isDefault": true
-      },
+      }
     },
     {
       "label": "Bazel Build (Run Opt)",
@@ -40,12 +40,13 @@
         "command": "bazel build --cxxopt='-std=c++17' ${relativeFileDirname}:${fileBasenameNoExtension} -c opt"
       },
       "osx": {
-        "command": "bazel build --cxxopt='-std=c++17' ${relativeFileDirname}:${fileBasenameNoExtension} -c opt",
+        "command": "bazel build --cxxopt='-std=c++17' ${relativeFileDirname}:${fileBasenameNoExtension} -c opt"
       },
       "group": {
-        "kind": "build",
+        "kind": "test",
         "isDefault": true
       },
+      "problemMatcher": []
     }
   ]
 }
