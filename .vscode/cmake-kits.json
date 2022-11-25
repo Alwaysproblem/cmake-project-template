@@ -1,0 +1,13 @@
+[
+  {
+    "name": "GCC 7.5.0 in micromamba",
+    "compilers": {
+      "C": "/usr/local/bin/gcc",
+      "CXX": "/usr/local/bin/g++"
+    },
+    "environmentSetupScript": "${workspaceFolder}/.envsetup.sh",
+    "preferredGenerator": {
+      "name": "Ninja"
+    }
+  }
+]

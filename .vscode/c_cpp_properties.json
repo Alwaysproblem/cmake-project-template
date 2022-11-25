@@ -1,0 +1,19 @@
+{
+  "configurations": [
+      {
+          "name": "Linux",
+          "includePath": [
+              "${workspaceFolder}/**",
+              "<your_include_path>"
+          ],
+          "defines": [],
+          "compilerPath": "g++",
+          "cStandard": "c11",
+          "cppStandard": "gnu++17",
+          "intelliSenseMode": "linux-gcc-x64",
+          "configurationProvider": "ms-vscode.cmake-tools",
+          "mergeConfigurations": true
+      }
+  ],
+  "version": 4
+}
