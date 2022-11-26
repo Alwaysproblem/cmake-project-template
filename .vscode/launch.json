@@ -40,7 +40,8 @@
         "stopAtEntry": false,
         "cwd": "${workspaceFolder}",
         "sourceFileMap": { 
-          "src/": "${workspaceFolder}/src" 
+          "src/": "${workspaceFolder}/src"
+          // https://github.com/microsoft/vscode-cpptools/issues/3831#issuecomment-548178142
         },
         "environment": [],
         "externalConsole": false,
