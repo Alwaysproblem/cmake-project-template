@@ -1,189 +1,291 @@
-[![Build Status](https://travis-ci.org/kigster/cmake-project-template.svg?branch=master)](https://travis-ci.org/kigster/cmake-project-template)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkigster%2Fcmake-project-template.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fkigster%2Fcmake-project-template?ref=badge_shield)
+# C++ Template for Google Bazel, Test, Benchmark, Log, and Abseil (ABSL)
 
-# CMake C++ Project Template
+> Can be used in Visual Studio Code
 
-### Division with a remainder library
+Features:
 
-Thank you for your interest in this project!
+- [x] Building C++ files using Bazel in Visual Studio Code
+- [x] [Google Test](https://github.com/google/googletest) for unit tests
+- [x] [Google GMock](https://google.github.io/googletest) for writing mock classes
+- [x] [Google Benchmark](https://github.com/google/benchmark) for benchmarking
+- [x] Google's [glog](https://github.com/google/glog) logger for logging
+- [x] Google's [Abseil library](https://github.com/abseil/abseil-cpp)
+- [x] [Address Sanitizer](https://github.com/google/sanitizers/wiki/AddressSanitizer)
+- [x] [Undefined behavior Sanitizer](https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html)
+- [x] Debugging with Visual Studio Code to provide breakpoints, watch, call stack, and pretty printing for STL containers such as `std::map` and `std::vector`
 
-Are you just starting with `CMake` or C++?
+You can use this template for most of your C++ projects with minimal changes.
 
-Do you need some easy-to-use starting point, but one that has the basic moving parts you are likely going to need on any medium sized project?
+## A Video on how to use this repo:
 
-Do you believe in test-driven development, or at the very least — write your tests *together* with the feature code? If so you'd want to start your project pre-integrated with a good testing framework.
+<table><tr><td>
 
-Divider is a minimal project that's kept deliberately very small. When you build it using CMake/make (see below) it generates:
+<a href="https://youtu.be/JfOzsBi_irY">
+<img border="5" alt="C++ starter repo for Bazel & Visual Studio Code with GTest, Glog and Abseil" src="https://raw.githubusercontent.com/ourarash/cpp-template/master/abseil_thumbnail_play.png" width="400">
+</a>
+</td></tr></table>
 
- 1. A tiny **static library** `lib/libdivision.a`,
- 2. **A command line binary `bin/divider`**, which links with the library,
- 3. **An executable unit test** `bin/divider_tests`  using [Google Test library](https://github.com/google/googletest).
- 4. **An optional BASH build script** `build-and-run` that you can use to quickly test if the project compiles, and runs.
+## Prerequisite: Installing Bazel
 
-## Usage
+This repo uses `Bazel` for building C++ files.
+You can install Bazel using this [link](https://docs.bazel.build/versions/master/install.html).
 
-### Prerequisites
-
-You will need:
-
- * A modern C/C++ compiler
- * CMake 3.1+ installed (on a Mac, run `brew install cmake`)
- * If you prefer to code in a great IDE, I highly recommend [Jetbrains CLion](https://www.jetbrains.com/clion/). It is fully compatible with this project.
-
-### Building The Project
-
-#### Git Clone
-
-First we need to check out the git repo:
+## Cloning this repo
 
 ```bash
-❯ mkdir ~/workspace
-❯ cd ~/workspace
-❯ git clone \
-    https://github.com/kigster/cmake-project-template \
-    my-project
-❯ cd my-project
-❯ bash build-and-run
+git clone https://github.com/ourarash/cpp-template.git
 ```
 
-The output of this script is rather long and is shown [on this screenshot](doc/build-and-run.png).
+## Examples:
 
-The script `build-and-run` is a short-cut — you shouldn't really be using this script to build your project, but see how to do it properly below.
+### Hello World Example:
 
-#### Project Structure
-
-There are three empty folders: `lib`, `bin`, and `include`. Those are populated by `make install`.
-
-The rest should be obvious: `src` is the sources, and `test` is where we put our unit tests.
-
-Now we can build this project, and below we show three separate ways to do so.
-
-#### Building Manually
+You can run this using `bazel`:
 
 ```bash
-❯ rm -rf build && mkdir build
-❯ git submodule init && git submodule update
-❯ cd build
-❯ cmake ..
-❯ make && make install
-❯ cd ..
+bazel run src/main:main
 ```
 
+### Google's glog demo:
 
-#### Running the tests
+You can run this using `bazel`:
 
 ```bash
-❯ bin/divider_tests
-[==========] Running 5 tests from 1 test case.
-[----------] Global test environment set-up.
-[----------] 5 tests from DividerTest
-[ RUN      ] DividerTest.5_DivideBy_2
-[       OK ] DividerTest.5_DivideBy_2 (1 ms)
-[ RUN      ] DividerTest.9_DivideBy_3
-[       OK ] DividerTest.9_DivideBy_3 (0 ms)
-[ RUN      ] DividerTest.17_DivideBy_19
-[       OK ] DividerTest.17_DivideBy_19 (0 ms)
-[ RUN      ] DividerTest.Long_DivideBy_Long
-[       OK ] DividerTest.Long_DivideBy_Long (0 ms)
-[ RUN      ] DividerTest.DivisionByZero
-[       OK ] DividerTest.DivisionByZero (0 ms)
-[----------] 5 tests from DividerTest (1 ms total)
-
-[----------] Global test environment tear-down
-[==========] 5 tests from 1 test case ran. (1 ms total)
-[  PASSED  ] 5 tests.
+bazel run src/main:main_logger
 ```
 
-#### Running the CLI Executable
+### Google's Benchmark demo:
 
-Without arguments, it prints out its usage:
+You can run this using `bazel`:
 
 ```bash
-❯ bin/divider
-
-Divider © 2018 Monkey Claps Inc.
-
-Usage:
-	divider <numerator> <denominator>
-
-Description:
-	Computes the result of a fractional division,
-	and reports both the result and the remainder.
+bazel run --cxxopt='-std=c++17' -c opt src/benchmark/main_benchmark
 ```
 
-But with arguments, it computes as expected the denominator:
+<table><tr><td>
+
+<a href="https://youtu.be/9VKR8u9odrA">
+A video tutorial on Google Benchmark.
+</a>
+</td></tr></table>
+
+### Google's Abseil's flags demo:
+
+You can run this using `bazel`:
 
 ```bash
-❯ bin/divider 112443477 12309324
-
-Divider © 2018 Monkey Claps Inc.
-
-Division : 112443477 / 12309324 = 9
-Remainder: 112443477 % 12309324 = 1659561
+bazel run src/main:main_flags_absl
 ```
 
-### Building in CLion
+### Address Sanitizer demo:
 
-> **NOTE**: Since JetBrains software [does not officially support git submodules](https://youtrack.jetbrains.com/issue/IDEA-64024), you must run `git submodule init && git submodule update` before starting CLion on a freshly checked-out repo.
+You can run this using `bazel`:
 
-> **NOTE**: We recommend that you copy file `.idea/workspace.xml.example` into `.idea/workspace.xml` **before starting CLion**. It will provide a good starting point for your project's workspace.
+```bash
+bazel run --config=asan //src/main:main_address_sanitize -- --choice=0
+```
 
-Assuming you've done the above two steps, you can start CLion, and open the project's top level folder. CLion should automatically detect the top level `CMakeLists.txt` file and provide you with the full set of build targets.
+Note that you should run bazel with `--config=asan`.
+This will use [.bazelrc](.bazelrc) file that enables the usage of address sanitizer.
 
-Select menu option **Build   ➜ Build Project**, and then **Build ➜ Install**.
+See [src/main/main_address_sanitize.cc](src/main/main_address_sanitize.cc) for usage examples.
 
-![CLION](doc/cmake-clion.png)
+Output:
 
-The above screenshot is an example of CLion with this project open.
+<table><tr><td>
 
-### Using it as a C++ Library
+<img border="5" alt="Google Sanitizer Demo" src="https://raw.githubusercontent.com/ourarash/cpp-template/master/asan_demo.png" width="800">
 
-We build a static library that, given a simple fraction will return the integer result of the division, and the remainder.
+</td></tr></table>
 
-We can use it from C++ like so:
+### Undefined Behavior Sanitizer demo:
+
+You can run this using `bazel`:
+
+```bash
+bazel run --config=ubsan //src/main:main_undefined_behavior_sanitizer -- --choice=0
+```
+
+Note that you should run bazel with `--config=ubsan`.
+This will use [.bazelrc](.bazelrc) file that enables the usage of address sanitizer.
+
+See [src/main/main_undefined_behavior_sanitizer.cc](src/main/main_undefined_behavior_sanitizer.cc) for usage examples.
+
+Example:
 
 ```cpp
-#include <iostream>
-#include <division>
-
-Fraction       f = Fraction{25, 7};
-DivisionResult r = Division(f).divide();
-
-std::cout << "Result of the division is " << r.division;
-std::cout << "Remainder of the division is " << r.remainder;
+int k = 0x7fffffff;
+k += 100;  // undefined behavior
+std::cout << "k: " << k << std::endl;
 ```
 
-## File Locations
+Output:
 
- * `src/*` — C++ code that ultimately compiles into a library
- * `test/lib` — C++ libraries used for tests (eg, Google Test)
- * `test/src` — C++ test suite
- * `bin/`, `lib`, `include` are all empty directories, until the `make install` install the project artifacts there.
+<table><tr><td>
 
-Tests:
+<img border="5" alt="Google Sanitizer Demo" src="https://raw.githubusercontent.com/ourarash/cpp-template/master/ubsan_demo.png" width="800">
 
- * A `test` folder with the automated tests and fixtures that mimics the directory structure of `src`.
- * For every C++ file in `src/A/B/<name>.cpp` there is a corresponding test file `test/A/B/<name>_test.cpp`
- * Tests compile into a single binary `test/bin/runner` that is run on a command line to run the tests.
- * `test/lib` folder with a git submodule in `test/lib/googletest`, and possibly other libraries.
+</td></tr></table>
 
-#### Contributing
+# Generate the `compile_commands.json`
 
-**Pull Requests are WELCOME!** Please submit any fixes or improvements, and I promise to review it as soon as I can at the project URL:
+Here is an possible solution for adding the include path automatically:
+[https://github.com/grailbio/bazel-compilation-database](https://github.com/grailbio/bazel-compilation-database)
 
- * [Project Github Home](https://github.com/kigster/cmake-project-template)
- * [Submit Issues](https://github.com/kigster/cmake-project-template/issues)
- * [Pull Requests](https://github.com/kigster/cmake-project-template/pulls)
+you can add this to BUILD file
 
-### License
+```
+compilation_database(
+    name = "example_compdb",
+    targets = [
+        "//src:main",
+    ],
+    # OUTPUT_BASE is a dynamic value that will vary for each user workspace.
+    # If you would like your build outputs to be the same across users, then
+    # skip supplying this value, and substitute the default constant value
+    # "__OUTPUT_BASE__" through an external tool like `sed` or `jq` (see
+    # below shell commands for usage).
+    output_base = OUTPUT_BASE,
+)
 
-&copy; 2017-2019 Konstantin Gredeskoul.
+```
 
-Open sourced under MIT license, the terms of which can be read here — [MIT License](http://opensource.org/licenses/MIT).
+and build with `bazel build //...:example_compdb`
 
+and the `compile_commands.json` is generated, which is can be invoked in `c_cpp_properties.json` in vscode like:
 
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkigster%2Fcmake-project-template.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fkigster%2Fcmake-project-template?ref=badge_large)
+```json
+{
+  ...
+  "compileCommands": "bazel-bin/src/compile_commands.json"
+  ...
+}
+```
 
-### Acknowledgements
+# Using Google Test with Bazel in Visual Studio Code:
 
-This project is a derivative of the [CMake Tutorial](https://cmake.org/cmake-tutorial/), and is aimed at saving time for starting new projects in C++ that use CMake and GoogleTest.
+Here is a video that explains more about how to use Google Test with Bazel in Visual Studio Code:
+
+<table><tr><td>
+
+<a href="https://www.youtube.com/watch?v=0wMNtl2xDT0/">
+<img border="5" alt="Bazel & Google Test in Visual Studio Code" src="https://raw.githubusercontent.com/ourarash/cpp-template/master/bazel_yt.png" width="400">
+</a>
+</td></tr></table>
+
+## Example of running a test:
+
+A sample test file is [tests/cpplib_test.cc](tests/cpplib_test.cc) which uses [tests/BUILD](tests/BUILD) file.
+
+You can run the test using [`bazel`](installing-bazel):
+
+```bash
+bazel test tests:tests
+```
+
+# More info on GLOG
+
+GLOG is the C++ implementation of the Google logging module.
+You can see complete usage instructions [here](https://github.com/google/glog/blob/master/doc/glog.html)
+
+A sample usage is included in this repo [here](src/main/main_logger.cc):
+
+```cpp
+int main(int argc, char* argv[]) {
+  google::InitGoogleLogging(argv[0]);
+
+  // Log both to log file and stderr
+  FLAGS_alsologtostderr = true;
+
+  std::vector<int> x = {1, 2, 3, 4};
+  std::map<int, int> y = {{1, 2}, {2, 3}};
+
+  LOG(INFO) << "ABC, it's easy as "
+            << "{" << x << "}";
+  LOG(INFO) << "ABC, it's easy as " << y;
+
+  LOG(INFO) << "This is an info  message";
+  LOG(WARNING) << "This is a warning message";
+  LOG(INFO) << "Hello, world again!";
+  LOG(ERROR) << "This is an error message";
+  LOG(FATAL) << "This is a fatal message";
+  CHECK(5 == 4) << "Check failed!";
+
+  return 0;
+}
+```
+
+# More Info On Abseil Library:
+
+[Abseil library](https://github.com/abseil/abseil-cpp) is an open-source collection of C++ code (compliant to C++11) designed to augment the C++ standard library.
+
+A sample usage is included in this repo [here](src/main/main_flags_absl.cc):
+
+Abseil contains the following C++ library components:
+
+- [`base`](https://github.com/abseil/abseil-cpp/tree/master/absl/base/) Abseil Fundamentals
+  <br /> The `base` library contains initialization code and other code which
+  all other Abseil code depends on. Code within `base` may not depend on any
+  other code (other than the C++ standard library).
+- [`algorithm`](https://github.com/abseil/abseil-cpp/tree/master/absl/algorithm/)
+  <br /> The `algorithm` library contains additions to the C++ `<algorithm>`
+  library and container-based versions of such algorithms.
+- [`container`](https://github.com/abseil/abseil-cpp/tree/master/absl/container/)
+  <br /> The `container` library contains additional STL-style containers,
+  including Abseil's unordered "Swiss table" containers.
+- [`debugging`](https://github.com/abseil/abseil-cpp/tree/master/absl/debugging/)
+  <br /> The `debugging` library contains code useful for enabling leak
+  checks, and stacktrace and symbolization utilities.
+- [`hash`](https://github.com/abseil/abseil-cpp/tree/master/absl/hash/)
+  <br /> The `hash` library contains the hashing framework and default hash
+  functor implementations for hashable types in Abseil.
+- [`memory`](https://github.com/abseil/abseil-cpp/tree/master/absl/memory/)
+  <br /> The `memory` library contains C++11-compatible versions of
+  `std::make_unique()` and related memory management facilities.
+- [`meta`](https://github.com/abseil/abseil-cpp/tree/master/absl/meta/)
+  <br /> The `meta` library contains C++11-compatible versions of type checks
+  available within C++14 and C++17 versions of the C++ `<type_traits>` library.
+- [`numeric`](https://github.com/abseil/abseil-cpp/tree/master/absl/numeric/)
+  <br /> The `numeric` library contains C++11-compatible 128-bit integers.
+- [`strings`](https://github.com/abseil/abseil-cpp/tree/master/absl/strings/)
+  <br /> The `strings` library contains a variety of strings routines and
+  utilities, including a C++11-compatible version of the C++17
+  `std::string_view` type.
+- [`synchronization`](https://github.com/abseil/abseil-cpp/tree/master/absl/synchronization/)
+  <br /> The `synchronization` library contains concurrency primitives (Abseil's
+  `absl::Mutex` class, an alternative to `std::mutex`) and a variety of
+  synchronization abstractions.
+- [`time`](https://github.com/abseil/abseil-cpp/tree/master/absl/time/)
+  <br /> The `time` library contains abstractions for computing with absolute
+  points in time, durations of time, and formatting and parsing time within
+  time zones.
+- [`types`](https://github.com/abseil/abseil-cpp/tree/master/absl/types/)
+  <br /> The `types` library contains non-container utility types, like a
+  C++11-compatible version of the C++17 `std::optional` type.
+- [`utility`](https://github.com/abseil/abseil-cpp/tree/master/absl/utility/)
+  <br /> The `utility` library contains utility and helper code.
+
+# Debugging with Bazel and Visual Studio Code
+
+## Build for debug:
+
+In order to generate debug information, use `-c dbg`:
+
+```bash
+bazel build src/main:main_logger  -c dbg
+```
+
+Visual Studio Code's [launch.json](.vscode/launch.json) file is currently set so that if you hit `F5` while any file under `src/main` is open (for example [src/main/main_fib.cc](src/main/main_fib.cc)), bazel will automatically build it for debug and run it in debug mode provided that a target with the name of the file without the `.cc` extension (e.g. `main_fib`) exists in [src/main/BUILD](src/main/BUILD) file.
+
+<table><tr><td>
+
+<a href="https://www.youtube.com/watch?v=0wMNtl2xDT0/">
+<img border="5" alt="Debugging C++ in Visual Studio Code using gcc/gdb and Bazel" src="https://raw.githubusercontent.com/ourarash/cpp-template/master/VSCDebug_yt.png" width="400">
+</a>
+</td></tr></table>
+
+More Info On Debugging in VSC is [here](https://code.visualstudio.com/docs/cpp/cpp-debug).
+
+### Credit
+
+The initial version of this repo was inspired by [this post](https://www.ratanparai.com/c++/writing-unit-tests-with-bazel/).
