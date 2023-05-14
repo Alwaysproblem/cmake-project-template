@@ -1,35 +1,35 @@
 {
-    "lldb.displayFormat": "auto",
-    "lldb.dereferencePointers": true,
-    "lldb.showDisassembly": "auto",
-    "editor.tokenColorCustomizations": {
-      "textMateRules": [
-        {
-          "scope": "googletest.failed",
-          "settings": {
-            "foreground": "#E66C75"
-          }
-        },
-        {
-          "scope": "googletest.passed",
-          "settings": {
-            "foreground": "#A3C989"
-          }
-        },
-        {
-          "scope": "googletest.run",
-          "settings": {
-            "foreground": "#A3C989"
-          }
+  "lldb.displayFormat": "auto",
+  "lldb.dereferencePointers": true,
+  "lldb.showDisassembly": "auto",
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": "googletest.failed",
+        "settings": {
+          "foreground": "#E66C75"
         }
-      ]
-    },
-    "gtest-adapter.debugConfig": [
-      "CodeLLDBDividerTest",
-      "CodeLLDBAllTests"
-    ],
-    "gtest-adapter.showCodeLens": true,
-    "gtest-adapter.showRunOutput": true,
-    "gtest-adapter.supportLocation": true,
-    "gtest-adapter.refreshAfterBuild": true
-  }
+      },
+      {
+        "scope": "googletest.passed",
+        "settings": {
+          "foreground": "#A3C989"
+        }
+      },
+      {
+        "scope": "googletest.run",
+        "settings": {
+          "foreground": "#A3C989"
+        }
+      }
+    ]
+  },
+  "gtest-adapter.debugConfig": [
+    "CodeLLDBDividerTest",
+    "CodeLLDBAllTests"
+  ],
+  "gtest-adapter.showCodeLens": true,
+  "gtest-adapter.showRunOutput": true,
+  "gtest-adapter.supportLocation": true,
+  "gtest-adapter.refreshAfterBuild": true
+}
